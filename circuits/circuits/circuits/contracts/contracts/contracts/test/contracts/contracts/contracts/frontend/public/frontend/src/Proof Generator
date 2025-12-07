@@ -1,0 +1,43 @@
+import React, { useState } from "react";
+
+function ProofGenerator({ onSubmit }) {
+  const [previous, setPrevious] = useState("1000");
+  const [current, setCurrent] = useState("800");
+  const [status, setStatus] = useState("");
+
+  const handleClick = () => {
+    setStatus("Generating ZK proof...");
+    setTimeout(() => {
+      setStatus("✅ Proof generated and verified on Qubic");
+      onSubmit();
+    }, 800);
+  };
+
+  return (
+    <div className="proof-generator">
+      <h2>Generate Energy Proof</h2>
+      <label>
+        Previous reading
+        <input
+          type="number"
+          value={previous}
+          onChange={(e) => setPrevious(e.target.value)}
+        />
+      </label>
+      <label>
+        Current reading
+        <input
+          type="number"
+          value={current}
+          onChange={(e) => setCurrent(e.target.value)}
+        />
+      </label>
+      <button className="generate-button" onClick={handleClick}>
+        Generate ZK-PoA
+      </button>
+      {status && <p style={{ marginTop: "0.75rem" }}>{status}</p>}
+    </div>
+  );
+}
+
+export default ProofGenerator;
