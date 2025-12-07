@@ -1,0 +1,68 @@
+@startuml
+title ADAM v6.0 – Privacy-Preserving Behavior Verification Architecture
+
+skinparam backgroundColor #0d1117
+skinparam defaultTextAlignment center
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam ArrowColor #cccccc
+skinparam ArrowThickness 1.2
+skinparam linetype ortho
+
+' Actors
+actor User as User <<Human>>
+actor "Verifier / Institution\n(School, Employer, City)" as Verifier
+
+' Frontend + Orchestrator
+node "ADAM Frontend\n(Replit Web App)" as Frontend {
+  component "Action Form UI\n(Submit behaviors,\nenergy readings, proofs)" as UI
+  component "Proof Orchestrator\n(JS + snarkjs)" as Orchestrator
+}
+
+' ZK Circuits
+node "ZK Proof System" as ZK {
+  component "EnergyProof.circom\n(ZK circuit)" as EnergyCircuit
+  component "Prover\n(snarkjs / circomlib)" as Prover
+}
+
+' Smart Contracts / On-chain
+node "Blockchain Layer\n(Qubic / EVM-compatible)" as Chain {
+  component "CampusGenesis.sol\n(Action registry)" as CampusGenesis
+  component "IZKVerifier.sol\n(Verifier interface)" as IZKVerifier
+  component "RewardDistributor.sol\n(Reward escrow)" as RewardDistributor
+  component "DummyVerifier.sol\n(Local demo verifier)" as DummyVerifier
+}
+
+' Off-chain data sources
+node "Behavior Data Sources" as DataSources {
+  component "Energy Meter / IoT\n(kWh readings)" as EnergyMeter
+  component "Institutional Systems\n(LMS, HR, City APIs)" as ExternalAPIs
+}
+
+' Storage / Analytics (optional)
+database "ADAM Off-chain Store\n(Logs, Merkle leaves,\nuser sessions)" as OffchainDB
+
+' Relationships
+User --> UI : 1. Submit actions,\nenergy readings, identity
+UI --> Orchestrator : 2. Prepare proof\ninputs (witness)
+Orchestrator --> EnergyCircuit : 3. Build circuit\nconstraints
+Orchestrator --> Prover : 4. Generate\nZK proof
+EnergyMeter --> Orchestrator : Provide raw\nenergy readings
+ExternalAPIs --> Orchestrator : Provide\nverified behavior data
+
+Prover --> Orchestrator : ZK proof +\npublic signals
+Orchestrator --> CampusGenesis : 5. Register action\n(on-chain tx)
+Orchestrator --> IZKVerifier : 6. Call verifier\nwith proof
+IZKVerifier --> RewardDistributor : 7. Notify valid\nproof / action
+RewardDistributor --> User : 8. Grant BLq /\nbehavior credits
+
+CampusGenesis --> OffchainDB : Log event\n(analytics, dashboards)
+RewardDistributor --> OffchainDB : Log reward\ntransfers
+
+Verifier --> Chain : Read verified\nproofs + actions
+Verifier --> OffchainDB : Query analytics /\nleaderboards
+
+' Demo path
+Orchestrator ..> DummyVerifier : Local-only\nverification (demo)
+
+@enduml
