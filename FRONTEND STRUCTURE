@@ -1,0 +1,15 @@
+frontend/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.jsx
+│   ├── components/
+│   │   ├── Dashboard.jsx
+│   │   ├── ProofGenerator.jsx
+│   │   ├── BLqTracker.jsx
+│   │   └── Leaderboard.jsx
+│   ├── styles/
+│   │   └── celestial.css
+│   └── utils/
+│       └── qubic.js
+└── package.json
