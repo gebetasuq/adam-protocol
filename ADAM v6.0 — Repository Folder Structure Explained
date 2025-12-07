@@ -1,0 +1,220 @@
+🗂️ ADAM v6.0 — Repository Folder Structure Explained
+
+This repository is organized to reflect the full architecture of ADAM:
+a zero-knowledge behavior verification protocol with smart contracts, zk-circuits, interfaces, and frontend documentation.
+
+Below is a clear explanation of every folder and file, and what role it plays in the protocol.
+
+📁 /circuits
+
+This folder contains all zero-knowledge circuits written in Circom.
+
+➡️ EnergyProof.circom
+
+The core ZK circuit of ADAM v6.0
+
+Verifies that a user reduced energy consumption without leaking their private data
+
+Converts raw energy readings into witness inputs, used to generate a SNARK proof
+
+Used by the frontend (snarkjs) and smart contracts
+
+
+Purpose:
+This is the cryptographic engine that makes ADAM privacy-preserving.
+
+
+📁 /contracts
+
+This folder contains all Solidity smart contracts, deployed on EVM-compatible chains, expandable to Qubic.
+
+1️⃣ CampusGenesis.sol
+
+The main on-chain registry for ADAM.
+
+Stores verified behavior actions
+
+Emits 이벤트 for analytics dashboards
+
+Links users → behaviors → time window
+
+Works with the verifier contract to ensure valid proofs only
+
+
+Purpose:
+This is ADAM’s public action ledger.
+
+
+2️⃣ IZKVerifier.sol
+
+An interface defining the required method for any verifier used by ADAM.
+
+function verifyProof(bytes memory proof) external view returns (bool);
+
+Purpose:
+Allows different verifier implementations (mock, Groth16, STARK-based, Qubic-based, etc.)
+to be plugged into ADAM without changing the main contracts.
+
+
+3️⃣ RewardDistributor.sol
+
+The reward escrow vault.
+
+Releases credits (BLq or other tokens)
+
+Only triggers after successful ZK verification
+
+Ensures fair distribution for verified contributions
+
+
+Purpose:
+This is ADAM’s incentive layer.
+
+
+4️⃣ DummyVerifier.sol
+
+A simplified verifier for development/demo mode.
+
+Always returns true
+
+Allows frontend tests without generating real proofs
+
+Used for Replit demo version
+
+
+Purpose:
+Fast testing + hackathon demo support.
+
+
+📁 /interfaces
+
+Interfaces used by the frontend to interact with Solidity contracts.
+
+📁 /interfaces/frontend
+
+Contains documentation + example calls for frontend integrations.
+
+ABI references
+
+Instructions for calling verifyProof()
+
+Connection flow for sending proofs to contract
+
+Example JavaScript code
+
+
+📁 /interfaces/frontend/docs
+
+Documentation files that describe:
+
+How the frontend connects to the contracts
+
+How proofs are generated
+
+How actions are submitted
+
+How reward distribution is triggered
+
+
+Purpose:
+This folder helps teams integrate ADAM into any app or client system.
+
+
+📄 README-frontend.md
+
+Explains the full frontend architecture:
+
+Proof generation workflow
+
+How to call circuits
+
+How to prepare witness inputs
+
+How to send proofs to contracts
+
+How to build new UI components around ADAM
+
+
+Purpose:
+Makes the protocol usable for developers building apps on ADAM.
+
+
+---
+
+📄 ADAM_Whitepaper_v6.0.pdf
+
+Your official protocol whitepaper inside the repository.
+
+Contains:
+
+The ADAM vision
+
+Mathematical model for ZK behavior verification
+
+Protocol architecture
+
+On-chain / off-chain components
+
+Reward model
+
+Privacy guarantees
+
+
+Purpose:
+Canonical documentation for judges, investors, devs, researchers.
+
+📄 README.md
+
+Top-level introduction.
+
+Normally includes:
+
+Project summary
+
+Architecture diagram
+
+Technology stack
+
+Installation guidelines
+
+Demo link (Replit)
+
+Contract addresses
+
+Whitepaper link
+
+
+This is the first thing people see.
+
+
+📄 LICENSE
+
+MIT License — open-source, permissive.
+
+
+📄 .gitignore
+
+Standard ignore rules for:
+
+node_modules
+
+circom build files
+
+snark artifacts
+
+environment variables
+
+
+⭐ REPOSITORY OVERVIEW (Short Version)
+
+Directory	Purpose
+
+/circuits	Zero-knowledge circuits (Circom)
+/contracts	All Solidity smart contracts
+/interfaces	ABI + frontend integration docs
+/frontend/docs	Instructions for calling ADAM from UI
+README.md	High-level project summary
+README-frontend.md	Frontend integration manual
+Whitepaper v6.0	Core research + protocol spec
+LICENSE	MIT license
+.gitignore	Version control cleanup
