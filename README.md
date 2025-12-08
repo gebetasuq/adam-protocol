@@ -263,6 +263,6 @@ MIT License
 Team Gebeta
 Founder: Mohammed B. Kemal
 Vision Architect of ADAM v6.0
-
+Abimbola Otegbeye — Smart Contract Engineer
 
 ---
