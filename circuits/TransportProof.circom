@@ -2,29 +2,36 @@ pragma circom 2.0.0;
 
 include "node_modules/circomlib/circuits/comparators.circom";
 
+/**
+ * TransportProof
+ * Proves that commute minutes have been reduced without revealing
+ * the exact minutes.
+ */
 template TransportProof() {
-    // Private inputs
-    signal input previousCommuteMinutes;  // baseline
-    signal input currentCommuteMinutes;   // today's commute
-    signal input secretSalt;
+    signal input previousCommuteMinutes;
+    signal input currentCommuteMinutes;
+    signal input minReductionMinutes;
 
-    // Public outputs
-    signal output reductionPercentage;
     signal output isValid;
 
-    // Compute reduction
-    var savedMinutes = previousCommuteMinutes - currentCommuteMinutes;
-    var percentage = (savedMinutes * 100) / previousCommuteMinutes;
+    signal diff;
+    diff <== previousCommuteMinutes - currentCommuteMinutes;
 
-    // Constrain output
-    reductionPercentage <== percentage;
+    signal diffMinusMin;
+    diffMinusMin <== diff - minReductionMinutes;
 
-    // Check >= 20% reduction for demo
-    component ge = GreaterEqThan(32);
-    ge.in[0] <== savedMinutes * 100;
-    ge.in[1] <== previousCommuteMinutes * 20;
+    component cmp = IsPositive();
+    cmp.in <== diffMinusMin;
 
-    isValid <== ge.out;
+    isValid <== cmp.out;
+}
+
+template IsPositive() {
+    signal input in;
+    signal output out;
+
+    out * (1 - out) === 0;
+    in  * (1 - out) === 0;
 }
 
 component main = TransportProof();
