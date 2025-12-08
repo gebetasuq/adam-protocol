@@ -1,6 +1,3 @@
-Nice. Let’s make your repo-level README now.
-
-Below is a complete README.md you can paste into the root of the adam-protocol repo (replace the existing one if you like).
 
 # ADAM Protocol v6.0 – Civilization OS
 
