@@ -1,44 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function ProofGenerator() {
-  const [baseline, setBaseline] = useState("");
-  const [current, setCurrent] = useState("");
-  const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("");
+const rows = [
+  {
+    id: "CAMP-001",
+    name: "Campus Alpha",
+    reduction: "18.4%",
+    blq: "12420"
+  },
+  {
+    id: "CAMP-002",
+    name: "District 3",
+    reduction: "11.2%",
+    blq: "8600"
+  },
+  {
+    id: "CAMP-003",
+    name: "Metro Hub",
+    reduction: "22.9%",
+    blq: "19875"
+  }
+];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("✅ ZK-Proof generated (demo). Backend integration required.");
-  };
-
+export default function Dashboard() {
   return (
-    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "12px" }}>
-      <label>
-        Baseline value
-        <input
-          type="number"
-          value={baseline}
-          onChange={(e) => setBaseline(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Current value
-        <input
-          type="number"
-          value={current}
-          onChange={(e) => setCurrent(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Evidence upload
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      </label>
-
-      <button type="submit">Generate Proof</button>
-
-      {status && <p>{status}</p>}
-    </form>
+    <div className="dashboard">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Campus ID</th>
+            <th>Name</th>
+            <th>Energy Reduction</th>
+            <th>BLq Minted</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.id}>
+              <td>{row.id}</td>
+              <td>{row.name}</td>
+              <td>{row.reduction}</td>
+              <td>{row.blq}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
