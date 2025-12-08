@@ -1,0 +1,22 @@
+{
+  "contractName": "BLqMinter",
+  "abi": [
+    {
+      "inputs": [
+        { "internalType": "address", "name": "admin", "type": "address" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "recipient", "type": "address" },
+        { "internalType": "uint256", "name": "amount", "type": "uint256" }
+      ],
+      "name": "mintBLQ",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}
