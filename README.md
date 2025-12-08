@@ -1,268 +1,85 @@
+# ADAM Protocol v6.0 – Civilization OS
 
-ADAM Protocol v6.0 — Civilization OS
+**The Operating System for Coordinated Civilization**
 
-The Operating System for Coordinated Civilization
+ADAM is a protocol for **verified positive behavior**.  
+It combines **Zero-Knowledge Proofs of Action**, **behavioral rewards (BLq)**, and a **modular mesh architecture** for cities, campuses, and enterprises.
 
-Built on Qubic, powered by ZK-Proof-of-Action, and introducing the world’s first asset class for verified positive behavior (BLq — Behavior Liquidity Units).
+Built on Qubic-compatible infrastructure and EVM tooling, ADAM enables:
 
-
----
-
-🌀 1. Overview
-
-Humanity faces a $47 trillion coordination failure — across cities, energy, transport, sustainability, and collective action.
-No existing chain or protocol solves this at scale, precision, and privacy.
-
-ADAM v6.0 is the first protocol engineered for civilization-scale coordination.
-
-It provides:
-
-ZK-verified proofs of behavior
-
-Feeless, deterministic execution (Qubic)
-
-BLq minting for positive externalities
-
-Modular Mesh architecture for cities, campuses, and enterprises
-
-
-If Bitcoin digitized money, ADAM digitizes progress.
-
+- ✅ **ZK-verified proofs of behavior** (energy, transport, participation, etc.)
+- ✅ **BLq minting** for positive externalities
+- ✅ **Feeless, deterministic execution** (Qubic-style)
+- ✅ **Privacy-preserving verification** – behavior is proven, not exposed
 
 ---
 
-⚡ 2. Why ADAM? The Coordination Trilemma
+ Overview
 
-Current systems fail in one of three pillars:
+### Problem
 
-Dimension	Problem
+Human systems suffer from a **coordination failure** across:
 
-Scale	Systems collapse when millions participate
-Precision	Data is unreliable, incomplete, or manipulated
-Privacy	Surveillance is the default; people resist participation
+- Energy & climate actions  
+- Transport & mobility choices  
+- Campus/city participation  
+- Sustainability & public goods
 
+Current systems are either:
 
-No system in history achieves all three.
-ADAM does.
+- Surveillance-based (privacy loss), or  
+- Weakly verifiable (no cryptographic guarantees).
 
+### ADAM’s Approach
 
----
+ADAM introduces **ZK-Proof-of-Action**:
 
-🔒 3. Breakthrough: ZK-Proof-of-Action + Qubic
-
-ADAM requires:
-
-Feeless micro-transactions
-
-Deterministic compute
-
-AI-scale throughput
-
-High-volume ZK execution
-
-
-Only Qubic satisfies these requirements.
-
-Requirement	Bitcoin	Ethereum	Solana	Qubic
-
-Feeless microtx	❌	❌	❌	✔
-Deterministic compute	❌	❌	❌	✔
-AI-scale compute	❌	❌	❌	✔
-High-ZK throughput	❌	❌	❌	✔
-
-
-ADAM is not “built on Qubic.”
-ADAM is forced onto Qubic by physics and economics.
-
+1. **User performs an action** (e.g. reduced energy usage, green commute).
+2. **Local client creates a zero-knowledge proof** of that behavior.
+3. **Verifiers check the proof** on-chain via `IZKVerifier`.
+4. **Rewards** (BLq) are distributed through `RewardDistributor`.
+5. All of this happens **without revealing raw behavior data**.
 
 ---
 
-🟡 4. New Global Asset Class: BLq (Behavior Liquidity Units)
+## 2. Repository Structure
 
-1 BLq = 1 unit of verified positive impact.
-
-BLq is minted when ZK proofs confirm actions like:
-
-Reducing energy load
-
-Improving recycling
-
-Lowering congestion
-
-Enhancing safety
-
-Reducing pollution
-
-
-Businesses purchase BLq to offset measurable negative externalities.
-
-Cities generate revenue by coordinating positive action → BLq markets → reinvestment.
-
-ADAM transforms coordinated behavior into a liquid, tradeable asset class.
-
-
----
-
-🕸️ 5. ADAM Mesh Architecture
-
-Modular, self-replicating “Meshes” make ADAM propagate like a digital organism.
-
-Mesh Types:
-
-EcoMesh — sustainability, net-zero incentives
-
-TransportMesh — route optimization, congestion reduction
-
-CityMesh — distributed resource management
-
-CampusMesh — student population coordination
-
-HealthMesh — preventive care incentives
-
-
-Cities don’t “implement” ADAM.
-They instantiate ADAM.
-
-
----
-
-🌍 6. Real-World Simulation: São Paulo Example
-
-Population: 10.8M
-Traffic cost: $20B/year
-
-ADAM reduces congestion by incentivizing decongestive behavior.
-
-Simulated outcome:
-
-12% reduction in congestion
-
-$2.4B recovered annually
-
-BLq market created
-
-Full privacy preserved
-
-
-ADAM doesn’t fight the city.
-It aligns the city.
-
-
----
-
-🧪 7. What We Built — Hackathon Deliverables
-
-✔ ZK-Proof-of-Action circuit
-
-✔ BLq Minter contract
-
-✔ Oracle pipeline for real data
-
-✔ Qubic execution pipeline
-
-✔ Frontend dashboard (React + Tailwind)
-
-✔ Energy load simulation (2,147 participants)
-
-Results:
-
-18.3% reduction in simulated energy usage
-
-4.8 tons estimated CO₂ avoided
-
-100% privacy preserved
-
-
-This is not theory.
-This is execution.
-
-
----
-
-🧱 8. Repository Structure
-
+```txt
 adam-protocol/
+├─ circuits/                 # Zero-knowledge circuits (Circom)
+│  ├─ EnergyProof.circom     # Proves reduced energy consumption
+│  └─ TransportProof.circom  # Proves low-carbon commute behavior
 │
-├── circuits/             # ZK circuits (EnergyProof, etc.)
-│   ├── energy/      
-│   └── README.md
+├─ contracts/                # Solidity smart contracts
+│  ├─ BLqMinter.sol          # Mints BLq (Behavior Liquidity Units)
+│  ├─ CampusGenesis.sol      # Campus/city registration & behavior registry
+│  ├─ RewardDistributor.sol  # Escrow and distribution of BLq rewards
+│  └─ IZKVerifier.sol        # Interface for ZK proof verifier
 │
-├── contracts/            # Smart contracts (BLq Minter, Registry)
-│   ├── src/
-│   ├── tests/
-│   └── qubic-pipeline/
+├─ abi/                      # Frontend-friendly ABIs
+│  ├─ BLqMinter.json
+│  ├─ CampusGenesis.json
+│  ├─ RewardDistributor.json
+│  └─ IZKVerifier.json
 │
-├── frontend/             # Dashboard UI (React)
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── utils/
-│   ├── styles/
-│   └── package.json
+├─ frontend/                 # React + Vite dashboard (MVP)
+│  ├─ index.html             # App entry HTML
+│  ├─ Vite.config.js         # Vite configuration
+│  ├─ package.json           # Frontend dependencies & scripts
+│  └─ src/
+│     ├─ main.jsx            # React root
+│     ├─ App.jsx             # Top-level layout & routing
+│     ├─ styles.css          # Basic styling
+│     └─ components/
+│        ├─ Dashboard.jsx    # Campus & metric dashboard
+│        └─ ProofGenerator.jsx # UI to submit / simulate ZK proofs
 │
-├── docs/                 # Whitepaper, slides, architecture diagrams
-│   ├── ADAM_Whitepaper_v6.0.pdf
-│   ├── ADAM_PitchDeck.pdf
-│   └── architecture.png
+├─ scripts/                  # Backend / devops scripts
+│  ├─ deploy.js              # Deploys all core contracts
+│  └─ verify.js              # Contract verification helper
 │
-├── scripts/              # Deployment scripts, utility functions
-│
-├── LICENSE
-└── README.md
-
-
----
-
-🛠️ 9. Quick Start
-
-Install Dependencies
-
-npm install
-
-Start Frontend
-
-npm run dev
-
-Compile Circuits
-
-cd circuits/energy
-npm run build
-
-Run Tests
-
-cd contracts
-npm test
-
-
----
-
-🚀 10. Mesh Initialization (Example)
-
-Campus Mesh:
-
-npm run mesh:campus-init
-
-EcoMesh:
-
-npm run mesh:eco-init
-
-
----
-
-📜 11. License
-
-MIT License
-© 2025 Gebeta Universe
-
-
----
-
-🤝 12. Team
-
-Team Gebeta
-Founder: Mohammed B. Kemal
-Vision Architect of ADAM v6.0
-Abimbola Otegbeye — Smart Contract Engineer
-
----
+├─ ADAM v6.0 – System Architecture Diagram (…)
+├─ ADAM v6.0 – Repository Folder Structure (…)
+├─ FRONTEND STRUCTURE
+├─ LICENSE
+└─ README.md                 
