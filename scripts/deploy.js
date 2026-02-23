@@ -8,12 +8,12 @@ async function main() {
   const RewardDistributor = await hre.ethers.getContractFactory("RewardDistributor");
   const IZKVerifier = await hre.ethers.getContractFactory("IZKVerifier");
 
-  // 🔧 Deploy Verifier
+  // Deploy Verifier
   const verifier = await IZKVerifier.deploy();
   await verifier.deployed();
   console.log("✔ IZKVerifier deployed at:", verifier.address);
 
-  // 🔧 Deploy CampusGenesis
+  // Deploy CampusGenesis
   const campus = await CampusGenesis.deploy(verifier.address);
   await campus.deployed();
   console.log("✔ CampusGenesis deployed at:", campus.address);
