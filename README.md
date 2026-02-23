@@ -321,5 +321,11 @@ Abimbola Otegbeye – Protocol Engineer & Co-Builder
 
 10. License
 
-This project is licensed under all rights reserved 
-See LICENSE for details.
+/**
+ * Proprietary Software
+ * Copyright © 2025 Mohammed B. Kemal
+ * All Rights Reserved.
+ *
+ * Unauthorized copying, modification, or use of this file,
+ * via any medium, is strictly prohibited.
+ */
