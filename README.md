@@ -8,14 +8,12 @@ It combines **Zero-Knowledge Proofs of Action**, **behavioral rewards (BLq)**, a
 
 Built on Qubic-compatible infrastructure and EVM tooling, ADAM enables:
 
-- ✅ **ZK-verified proofs of behavior** (energy, transport, participation, etc.)
-- ✅ **BLq minting** for positive externalities
-- ✅ **Feeless, deterministic execution** (Qubic-style)
-- ✅ **Privacy-preserving verification** – behavior is proven, not exposed
+- **ZK-verified proofs of behavior** (energy, transport, participation, etc.)
+-   - **BLq minting** for positive externalities
+-  **Feeless, deterministic execution** (Qubic-style)
+-  **Privacy-preserving verification** – behavior is proven, not exposed
 
----
-
-## 1. High-Level Overview
+## 1.Overview
 
 ### Problem
 
@@ -129,10 +127,6 @@ Implements the reward logic that is triggered when a ZK proof is accepted.
 Key responsibilities:
 
 distribute(address recipient, uint256 reward) – sends BLq for a verified action.
-
-
-
----
 
 IZKVerifier.sol
 
@@ -295,11 +289,11 @@ Open the printed localhost URL to use the dashboard.
 
 8. Roadmap
 
-🔐 Full integration with production-grade ZK verifier contracts.
+ Full integration with production-grade ZK verifier contracts.
 
-🛰 Qubic / L2 deployment and gas-optimized reward flows.
+ Qubic / L2 deployment and gas-optimized reward flows.
 
-🧩 Additional metric circuits:
+ Additional metric circuits:
 
 Waste reduction
 
@@ -308,12 +302,9 @@ Mobility sharing
 Digital participation
 
 
-🏙 Multi-campus mesh support and cross-domain coordination.
+Multi-campus mesh support and cross-domain coordination.
 
-📊 Rich analytics dashboard for city-scale metrics.
-
-
-
+Rich analytics dashboard for city-scale metrics.
 
 
 9. Team
@@ -330,5 +321,5 @@ Abimbola Otegbeye – Protocol Engineer & Co-Builder
 
 10. License
 
-This project is licensed under the MIT License.
+This project is licensed under all rights reserved 
 See LICENSE for details.
