@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-  console.log("🔍 Starting contract verification...");
+  console.log(" Starting contract verification...");
 
   await hre.run("verify:verify", {
     address: process.env.CONTRACT_ADDRESS,
