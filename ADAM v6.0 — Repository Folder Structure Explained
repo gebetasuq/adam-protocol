@@ -1,15 +1,15 @@
-🗂️ ADAM v6.0 — Repository Folder Structure Explained
+ ADAM v6.0 — Repository Folder Structure 
 
 This repository is organized to reflect the full architecture of ADAM:
 a zero-knowledge behavior verification protocol with smart contracts, zk-circuits, interfaces, and frontend documentation.
 
 Below is a clear explanation of every folder and file, and what role it plays in the protocol.
 
-📁 /circuits
+/circuits
 
 This folder contains all zero-knowledge circuits written in Circom.
 
-➡️ EnergyProof.circom
+ EnergyProof.circom
 
 The core ZK circuit of ADAM v6.0
 
@@ -24,11 +24,11 @@ Purpose:
 This is the cryptographic engine that makes ADAM privacy-preserving.
 
 
-📁 /contracts
+ /contracts
 
 This folder contains all Solidity smart contracts, deployed on EVM-compatible chains, expandable to Qubic.
 
-1️⃣ CampusGenesis.sol
+1️CampusGenesis.sol
 
 The main on-chain registry for ADAM.
 
@@ -45,7 +45,7 @@ Purpose:
 This is ADAM’s public action ledger.
 
 
-2️⃣ IZKVerifier.sol
+2️ IZKVerifier.sol
 
 An interface defining the required method for any verifier used by ADAM.
 
@@ -56,7 +56,7 @@ Allows different verifier implementations (mock, Groth16, STARK-based, Qubic-bas
 to be plugged into ADAM without changing the main contracts.
 
 
-3️⃣ RewardDistributor.sol
+3️ RewardDistributor.sol
 
 The reward escrow vault.
 
@@ -71,7 +71,7 @@ Purpose:
 This is ADAM’s incentive layer.
 
 
-4️⃣ DummyVerifier.sol
+4️DummyVerifier.sol
 
 A simplified verifier for development/demo mode.
 
@@ -86,11 +86,11 @@ Purpose:
 Fast testing + hackathon demo support.
 
 
-📁 /interfaces
+ /interfaces
 
 Interfaces used by the frontend to interact with Solidity contracts.
 
-📁 /interfaces/frontend
+ /interfaces/frontend
 
 Contains documentation + example calls for frontend integrations.
 
@@ -103,7 +103,7 @@ Connection flow for sending proofs to contract
 Example JavaScript code
 
 
-📁 /interfaces/frontend/docs
+ /interfaces/frontend/docs
 
 Documentation files that describe:
 
@@ -120,7 +120,7 @@ Purpose:
 This folder helps teams integrate ADAM into any app or client system.
 
 
-📄 README-frontend.md
+README-frontend.md
 
 Explains the full frontend architecture:
 
@@ -139,9 +139,7 @@ Purpose:
 Makes the protocol usable for developers building apps on ADAM.
 
 
----
-
-📄 ADAM_Whitepaper_v6.0.pdf
+ ADAM_Whitepaper_v6.0.pdf
 
 Your official protocol whitepaper inside the repository.
 
@@ -163,11 +161,10 @@ Privacy guarantees
 Purpose:
 Canonical documentation for judges, investors, devs, researchers.
 
-📄 README.md
+ README.md
 
 Top-level introduction.
-
-Normally includes:
+ includes:
 
 Project summary
 
@@ -182,17 +179,19 @@ Demo link (Replit)
 Contract addresses
 
 Whitepaper link
+ LICENSE
+
+/**
+ * Proprietary Software
+ * Copyright © 2025 Mohammed B. Kemal
+ * All Rights Reserved.
+ *
+ * Unauthorized copying, modification, or use of this file,
+ * via any medium, is strictly prohibited.
+ */
 
 
-This is the first thing people see.
-
-
-📄 LICENSE
-
-MIT License — open-source, permissive.
-
-
-📄 .gitignore
+.gitignore
 
 Standard ignore rules for:
 
@@ -205,7 +204,7 @@ snark artifacts
 environment variables
 
 
-⭐ REPOSITORY OVERVIEW (Short Version)
+REPOSITORY OVERVIEW (Short Version)
 
 Directory	Purpose
 
@@ -216,5 +215,5 @@ Directory	Purpose
 README.md	High-level project summary
 README-frontend.md	Frontend integration manual
 Whitepaper v6.0	Core research + protocol spec
-LICENSE	MIT license
+LICENSE	all rights reserved 
 .gitignore	Version control cleanup
